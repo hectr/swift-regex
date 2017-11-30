@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 
 import XCTest
-@testable import Regex
+@testable import RegexMatcher
 
 class MatchTests: XCTestCase {
     var sut: Match!

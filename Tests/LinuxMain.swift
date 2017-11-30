@@ -1,5 +1,5 @@
 import XCTest
-@testable import RegexTests
+@testable import RegexMatcherTests
 
 XCTMain([
     testCase(MatchTests.allTests),

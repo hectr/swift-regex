@@ -18,16 +18,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+import XCTest
+@testable import RegexMatcher
 
-// Representation of a regular expression match.
-public struct Match {
+class StringTests: XCTestCase {
+    var sut: Range<String.Index>!
+    var string: String!
     
-    public let range: Range<String.Index>
-    public let value: String
-    
-    init(range: Range<String.Index>, in string: String) {
-        self.range = range
-        self.value = string.substring(with: range)
+    override func setUp() {
+        let nsrange = NSRange(location: 3, length: 3)
+        string = "some string"
+        sut = string.range(from: nsrange)
     }
+    
+    func testRangeFromNSRange() {
+        let otherString  = "mose sgnirt"
+        let otherSubstring = "e s"
+        let otherRange = otherString.range(of: otherSubstring)
+        XCTAssertEqual(sut, otherRange)
+    }
+    
+    static var allTests = [
+        ("testRangeFromNSRange", testRangeFromNSRange)
+    ]
 }
