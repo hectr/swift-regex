@@ -1,0 +1,6 @@
+use_frameworks!
+target 'RegexMatcher_Tests' do
+  pod 'RegexMatcher', :path => '../'
+  
+  
+end
