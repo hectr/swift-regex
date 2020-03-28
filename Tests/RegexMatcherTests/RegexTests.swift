@@ -79,6 +79,18 @@ class RegexTests: XCTestCase {
         XCTAssertEqual(values, expectedValues)
     }
     
+    func testMatchesWithCapturingGroups() {
+        sut = "([a-z]([a-z]) )"
+        let expectedGroups = ["me ", "e"]
+        let string = "some string"
+        let matches = sut.matches(in: string)
+        let capturedGroups = matches
+            .flatMap { $0.capturedRanges }
+            .compactMap { $0 }
+            .map { String(string[$0]) }
+        XCTAssertEqual(capturedGroups, expectedGroups)
+    }
+
     func testMatchesWithOptions() {
         sut = try! Regex(pattern: pattern, options: [.dotMatchesLineSeparators])
         let expectedValues = ["som", "e s", "tri", "ng\n", "som", "e s", "tri"]
@@ -114,6 +126,7 @@ class RegexTests: XCTestCase {
         ("testExpressibleByStringLiteralConformance", testExpressibleByStringLiteralConformance),
         ("testMatches", testMatches),
         ("testMatchesWithOptions", testMatchesWithOptions),
+        ("testMatchesWithCapturingGroups", testMatchesWithCapturingGroups),
         ("testNumberOfMatches", testNumberOfMatches),
         ("testNumberOfMatchesWithOptions", testNumberOfMatchesWithOptions)
     ]

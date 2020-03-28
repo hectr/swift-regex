@@ -25,9 +25,11 @@ public struct Match: Equatable {
     
     public let range: Range<String.Index>
     public let value: String
-    
-    init(range: Range<String.Index>, in string: String) {
+    public let capturedRanges: [Range<String.Index>?]
+
+    init(range: Range<String.Index>, capturedRanges: [Range<String.Index>?], in string: String) {
         self.range = range
         self.value = String(string[range.lowerBound..<range.upperBound])
+        self.capturedRanges = capturedRanges
     }
 }

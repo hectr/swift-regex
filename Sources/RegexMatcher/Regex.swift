@@ -59,14 +59,22 @@ public struct Regex: Equatable {
         let results = self.textCheckingResults(in: string)
         var matches = [Match]()
         for result in results {
-            if let range = string.range(from: result.range) {
-                let match = Match(range: range, in: string)
-                matches.append(match)
-            } else {
-                assert(false)
+            guard let range = string.range(from: result.range) else {
+                assertionFailure()
+                continue
             }
+            var capturedRanges = [Range<String.Index>?]()
+            for captureGroupIndex in 1 ..< result.numberOfRanges {
+                let nsRange = result.range(at: captureGroupIndex)
+                let range = string.range(from: nsRange)
+                capturedRanges.append(range)
+            }
+            let match = Match(range: range,
+                              capturedRanges: capturedRanges,
+                              in: string)
+            matches.append(match)
         }
-        
+
         return matches
     }
     

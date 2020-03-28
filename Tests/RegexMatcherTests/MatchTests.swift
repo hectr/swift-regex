@@ -31,7 +31,7 @@ class MatchTests: XCTestCase {
         string  = "some string"
         substring = "e s"
         range = string.range(of: substring)
-        sut = Match(range: range, in: string)
+        sut = Match(range: range, capturedRanges: [], in: string)
     }
     
     func testRangeIsInitialized() {
@@ -46,7 +46,7 @@ class MatchTests: XCTestCase {
         let otherString  = "mose sgnirt"
         let otherSubstring = "e s"
         let otherRange = otherString.range(of: otherSubstring)
-        let otherMatch = Match(range: otherRange!, in: otherString)
+        let otherMatch = Match(range: otherRange!, capturedRanges: [], in: otherString)
         XCTAssertEqual(sut, otherMatch)
     }
     
@@ -54,7 +54,7 @@ class MatchTests: XCTestCase {
         let otherString  = "se sg"
         let otherSubstring = "e s"
         let otherRange = otherString.range(of: otherSubstring)
-        let otherMatch = Match(range: otherRange!, in: otherString)
+        let otherMatch = Match(range: otherRange!, capturedRanges: [], in: otherString)
         XCTAssertNotEqual(sut, otherMatch)
     }
     
@@ -62,7 +62,7 @@ class MatchTests: XCTestCase {
         let otherString  = "emos gnirts"
         let otherSubstring = "s g"
         let otherRange = otherString.range(of: otherSubstring)
-        let otherMatch = Match(range: otherRange!, in: otherString)
+        let otherMatch = Match(range: otherRange!, capturedRanges: [], in: otherString)
         XCTAssertNotEqual(sut, otherMatch)
     }
     
