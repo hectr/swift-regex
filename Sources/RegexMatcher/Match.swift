@@ -21,7 +21,7 @@
 import Foundation
 
 // Representation of a regular expression match.
-public struct Match {
+public struct Match: Equatable {
     
     public let range: Range<String.Index>
     public let value: String

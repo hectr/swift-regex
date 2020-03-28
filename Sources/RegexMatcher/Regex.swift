@@ -22,7 +22,7 @@ import Foundation
 
 // Wrapper for `NSRegularExpression`.
 // Derived from: <http://nshipster.com/swift-literal-convertible/>.
-public struct Regex {
+public struct Regex: Equatable {
     
     static let DefaultOptions = NSRegularExpression.Options(rawValue: 0)
     static let DefaultMatchingOptions = NSRegularExpression.MatchingOptions(rawValue: 0)
